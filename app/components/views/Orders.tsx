@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { type Order } from "~/types/API";
+import TextButton from "../buttons/TextButton";
+import { RefreshIcon } from "../icons/RefreshIcon";
+import SearchOrderInput from "../inputs/SearchOrderInput";
+import OrdersTable from "../tables/OrdersTable";
 
 function Orders() {
   const [
@@ -7,9 +11,16 @@ function Orders() {
     setOrders
   ] = useState<Order[]>([]);
 
+  const [
+    isFetching,
+    setIsFetching
+  ] = useState<boolean>(true);
+
   const fetchOrders = useCallback(
     async () => {
       try {
+        setIsFetching(true);
+
         const response = await fetch("./orders.json");
 
         const data = await response.json();
@@ -21,6 +32,8 @@ function Orders() {
           "Error fetching orders data:",
           error
         );
+      } finally {
+        setIsFetching(false);
       }
     },
     []
@@ -34,7 +47,25 @@ function Orders() {
   );
 
   return (
-    <div className="flex-1 max-w-[734px] max-h-[370px] grid gap-[12px]">
+    <div className="grid gap-[24px]">
+      <div className="flex justify-between">
+        <h1 className="text-4xl font-semibold text-black">
+          Orders
+        </h1>
+        <TextButton
+          text="Refresh"
+          onPress={fetchOrders}
+          leftSideIcon={<RefreshIcon />}
+        />
+      </div>
+      <SearchOrderInput />
+      {isFetching ? (
+        <p className="text-black place-self-center">
+          Loading...
+        </p>
+      ) : (
+        <OrdersTable orders={orders} />
+      )}
     </div>
   );
 }
