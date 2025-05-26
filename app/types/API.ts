@@ -1,5 +1,5 @@
 export type Order = {
-  orderNumber: number;
+  orderNumber: string;
   dueDate: string;
   createdAt: string;
   total: number;
