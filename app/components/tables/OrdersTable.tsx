@@ -26,12 +26,12 @@ function OrdersTable(props: OrdersTableProps) {
 
   return (
     <div className="border border-[#EDEDED] rounded-sm">
-      <div className="flex flex-row gap-[24px] text-black text-sm text-left">
-        <p className="flex-1 py-[12px] px-[24px] font-semibold">Order #</p>
-        <p className="flex-1 py-[12px]">Created at</p>
-        <p className="flex-1 py-[12px]">Due date</p>
-        <p className="flex-1 py-[12px] px-[24px] text-right">Total</p>
-        <p className="flex-1 py-[12px] px-[24px] text-right">Status</p>
+      <div className="flex flex-row py-[12px] px-[24px] gap-[24px] text-black text-sm text-left font-semibold wrap-anywhere">
+        <p className="flex-1">Order #</p>
+        <p className="flex-1">Created at</p>
+        <p className="flex-1">Due date</p>
+        <p className="flex-1 text-right">Total</p>
+        <p className="flex-1 text-right">Status</p>
       </div>
       <div>
         {props.orders.map((
@@ -92,12 +92,12 @@ function OrdersTable(props: OrdersTableProps) {
           }
 
           return (
-            <div key={order.orderNumber} className={rowClassName + " flex flex-row py-[12px] gap-[24px] text-left"}>
-              <p className="flex-1 px-[24px]" >{order.orderNumber}</p>
+            <div key={order.orderNumber} className={rowClassName + " flex flex-row py-[12px] px-[24px] gap-[24px] text-left wrap-anywhere"}>
+              <p className="flex-1" >{order.orderNumber}</p>
               <p className="flex-1">{formattedCreatedAt}</p>
               <p className="flex-1">{formattedDueDate}</p>
-              <p className="flex-1 text-right px-[24px]">{formattedTotal}</p>
-              <p className={statusClassName + " flex-1 text-right px-[24px] font-bold"} >{order.status}</p>
+              <p className="flex-1 text-right ">{formattedTotal}</p>
+              <p className={statusClassName + " flex-1 text-right font-bold"} >{order.status}</p>
             </div>
           )
         })}
