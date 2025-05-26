@@ -1,4 +1,8 @@
-function SearchOrderInput() {
+interface SearchQueryInput {
+  onChange: () => void;
+}
+
+function SearchQueryInput() {
 
   return (
     <input
@@ -10,4 +14,4 @@ function SearchOrderInput() {
   );
 }
 
-export default SearchOrderInput;
+export default SearchQueryInput;

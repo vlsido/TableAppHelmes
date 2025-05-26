@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { type Order } from "~/types/API";
 import TextButton from "../buttons/TextButton";
 import { RefreshIcon } from "../icons/RefreshIcon";
-import SearchOrderInput from "../inputs/SearchOrderInput";
+import SearchQueryInput from "../inputs/SearchQueryInput";
 import OrdersTable from "../tables/OrdersTable";
 
 function Orders() {
@@ -46,6 +46,14 @@ function Orders() {
     []
   );
 
+  const doSearchQuery = useCallback(
+    (text: string) => {
+
+    },
+    []
+  );
+
+
   return (
     <div className="grid gap-[24px]">
       <div className="flex justify-between">
@@ -58,7 +66,7 @@ function Orders() {
           leftSideIcon={<RefreshIcon />}
         />
       </div>
-      <SearchOrderInput />
+      <SearchQueryInput onChange={doSearchQuery} />
       {isFetching ? (
         <p className="text-black place-self-center">
           Loading...
