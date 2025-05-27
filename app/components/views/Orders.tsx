@@ -1,6 +1,7 @@
 import {
   useCallback,
   useEffect,
+  useRef,
   useState
 } from "react";
 import { type Order } from "~/types/API";
@@ -144,7 +145,11 @@ function Orders() {
           testId="ORDERS.CONTAINER.HEADER.REFRESH:BUTTON"
           ariaLabel="Refresh orders data"
           onPress={fetchFresh}
-          leftSideIcon={<RefreshIcon />}
+          leftSideIcon={
+            <RefreshIcon
+              className={isFetching ? "animate-spin" : ""}
+            />
+          }
         />
       </div>
       <SearchQueryInput
