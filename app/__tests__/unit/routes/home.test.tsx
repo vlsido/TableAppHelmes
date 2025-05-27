@@ -4,6 +4,8 @@ import Home from "~/routes/home";
 import { setupServer } from "msw/node";
 import { http, HttpResponse } from "msw";
 import { ordersMock } from "~/__mocks__/orders";
+import { meta } from "~/routes/home";
+import type { Route } from ".react-router/types/app/routes/+types/home";
 
 const server = setupServer(http.get(
   "/orders.json",
@@ -27,5 +29,6 @@ describe(
         expect(screen.getByTestId("HOME.MAIN_CONTAINER:VIEW")).toBeVisible();
       }
     );
+
   }
 );
