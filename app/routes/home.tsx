@@ -10,7 +10,9 @@ export function meta({ }: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <main className="h-screen w-screen flex-1 bg-white overflow-auto">
+    <main
+      data-testid="HOME.MAIN_CONTAINER:VIEW"
+      className="h-screen w-screen flex-1 bg-white overflow-auto">
       <Orders />
     </main>
   );

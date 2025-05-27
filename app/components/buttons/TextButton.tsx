@@ -3,6 +3,8 @@ import type { ReactElement } from "react";
 interface TextButtonProps {
   text: string;
   onPress: () => void;
+  ariaLabel: string;
+  testId: string;
   leftSideIcon?: ReactElement;
   backgroundColor?: string;
   color?: string;
@@ -13,6 +15,8 @@ function TextButton(props: TextButtonProps) {
   return (
     <button
       className="flex flex-row items-center px-[16px] py-[10px] gap-[8px] text-black bg-red rounded-sm"
+      data-testid={props.testId}
+      aria-label={props.ariaLabel}
       style={{
         backgroundColor: props.backgroundColor ? props.backgroundColor : "#005EFF",
         color: props.color ? props.color : "#fff"

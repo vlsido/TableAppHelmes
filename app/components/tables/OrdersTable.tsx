@@ -18,14 +18,18 @@ function OrdersTable(props: OrdersTableProps) {
 
   if (props.orders.length === 0) {
     return (
-      <p className="text-black place-self-center">
+      <p
+        data-testid="ORDERS_TABLE.NO_ORDERS:TEXT"
+        className="text-black place-self-center">
         No orders!
       </p>
     );
   }
 
   return (
-    <div className="border border-[#EDEDED] rounded-sm">
+    <div
+      data-testid="ORDERS_TABLE.CONTAINER:VIEW"
+      className="border border-[#EDEDED] rounded-sm">
       <div className="flex flex-row py-[12px] px-[24px] gap-[24px] text-black text-sm text-left font-semibold wrap-anywhere">
         <p className="flex-1">Order #</p>
         <p className="flex-1">Created at</p>

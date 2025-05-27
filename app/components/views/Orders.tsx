@@ -8,21 +8,7 @@ import TextButton from "../buttons/TextButton";
 import { RefreshIcon } from "../icons/RefreshIcon";
 import SearchQueryInput from "../inputs/SearchQueryInput";
 import OrdersTable from "../tables/OrdersTable";
-
-// Global scope, because it's a backend function
-/**
-  *Search for orders 
-  *@param data - Orders array
-  *@param search - Search query
-  *@returns Found orders
-  */
-
-function mockSearch(
-  data: Order[], search: string
-) {
-
-  return data.filter((order: Order) => order.orderNumber.toUpperCase().includes(search.toUpperCase()));
-}
+import { mockSearch } from "~/utils/app-utils";
 
 function Orders() {
   const [
@@ -45,7 +31,7 @@ function Orders() {
       try {
         setIsFetching(true);
 
-        const response = await fetch("./orders.json");
+        const response = await fetch("/orders.json");
 
         const data = await response.json();
 
@@ -66,7 +52,7 @@ function Orders() {
   const fetchQueryData = useCallback(
     async (query: string) => {
       try {
-        const response = await fetch(`./orders.json?search=${query}`);
+        const response = await fetch(`/orders.json?search=${query}`);
 
         const data = await response.json();
 
@@ -93,7 +79,7 @@ function Orders() {
       try {
         setIsFetching(true);
 
-        const response = await fetch(`./orders.json?search=${query}`);
+        const response = await fetch(`/orders.json?search=${query}`);
 
         const data = await response.json();
 
@@ -144,13 +130,19 @@ function Orders() {
   );
 
   return (
-    <div className="flex-1 grid pt-[5%] px-[10px] gap-[12px]">
-      <div className="flex flex-row justify-between">
+    <div
+      data-testid="ORDERS.CONTAINER:VIEW"
+      className="flex w-[100%] max-w-[734px] place-self-center grid pt-[5%] px-[10px] gap-[12px]">
+      <div
+        data-testid="ORDERS.CONTAINER.HEADER:VIEW"
+        className="flex flex-row justify-between">
         <h1 className="text-4xl font-semibold text-black">
           Orders
         </h1>
         <TextButton
           text="Refresh"
+          testId="ORDERS.CONTAINER.HEADER.REFRESH:BUTTON"
+          ariaLabel="Refresh orders data"
           onPress={fetchFresh}
           leftSideIcon={<RefreshIcon />}
         />
