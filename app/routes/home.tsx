@@ -1,13 +1,19 @@
+import Orders from "~/components/views/Orders";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Orders" },
+    { name: "description", content: "Your orders" },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return (
+    <main
+      data-testid="HOME.MAIN_CONTAINER:VIEW"
+      className="h-screen w-screen flex-1 bg-white overflow-auto">
+      <Orders />
+    </main>
+  );
 }
