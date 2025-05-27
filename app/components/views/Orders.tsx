@@ -1,15 +1,15 @@
 import {
   useCallback,
   useEffect,
-  useRef,
   useState
 } from "react";
-import { type Order } from "~/types/API";
 import TextButton from "../buttons/TextButton";
 import { RefreshIcon } from "../icons/RefreshIcon";
 import SearchQueryInput from "../inputs/SearchQueryInput";
 import OrdersTable from "../tables/OrdersTable";
-import { mockSearch } from "~/utils/app-utils";
+import { OperationError } from "~/utils/errors/OperationError";
+import type { Order } from "~/types/api";
+import { callFetchOrders } from "~/utils/apis/serverApi";
 
 function Orders() {
   const [
@@ -28,21 +28,28 @@ function Orders() {
   ] = useState<string>("");
 
   const fetchOrders = useCallback(
-    async () => {
+    async (query?: string) => {
       try {
-        setIsFetching(true);
+        if (!query) {
+          setIsFetching(true);
+        }
 
-        const response = await fetch("/orders.json");
+        const orders = await callFetchOrders(query);
 
-        const data = await response.json();
-
-        setOrders(data);
+        setOrders(orders);
       } catch (error) {
-        alert("Error getting orders data!");
-        console.error(
-          "Error fetching orders data:",
-          error
-        );
+        if (error instanceof OperationError) {
+          switch (error.code) {
+            case "api/error":
+              alert("Server error! Try again later.");
+              break;
+            default:
+              alert("Error getting orders data");
+          }
+
+        } else {
+          alert("Unexpected error!");
+        }
       } finally {
         setIsFetching(false);
       }
@@ -50,55 +57,10 @@ function Orders() {
     []
   );
 
-  const fetchQueryData = useCallback(
-    async (query: string) => {
-      try {
-        const response = await fetch(`/orders.json?search=${query}`);
-
-        const data = await response.json();
-
-        // Mock search function on the backend 
-        const foundOrders = mockSearch(
-          data,
-          query
-        );
-
-        setOrders(foundOrders);
-      } catch (error) {
-        alert("Error while searching orders data!");
-        console.error(
-          "Error while searching orders data:",
-          error
-        );
-      }
-    },
-    []
-  );
-
-  const fetchFresh = useCallback(
-    async () => {
-      try {
-        setIsFetching(true);
-
-        const response = await fetch(`/orders.json?search=${query}`);
-
-        const data = await response.json();
-
-        const foundOrders = mockSearch(
-          data,
-          query
-        );
-
-        setOrders(foundOrders);
-      } catch (error) {
-        alert("Error refreshing orders data!");
-        console.error(
-          "Error fetching orders data:",
-          error
-        );
-      } finally {
-        setIsFetching(false);
-      }
+  const handleRefresh = useCallback(
+    () => {
+      setIsFetching(true);
+      fetchOrders(query);
     },
     [
       query
@@ -115,19 +77,12 @@ function Orders() {
   useEffect(
     () => {
       if (query.length >= 2) {
-        fetchQueryData(query);
+        fetchOrders(query);
       }
     },
     [
       query
     ]
-  );
-
-  const onChangeQuery = useCallback(
-    (text: string) => {
-      setQuery(text);
-    },
-    []
   );
 
   return (
@@ -144,7 +99,7 @@ function Orders() {
           text="Refresh"
           testId="ORDERS.CONTAINER.HEADER.REFRESH:BUTTON"
           ariaLabel="Refresh orders data"
-          onPress={fetchFresh}
+          onPress={handleRefresh}
           leftSideIcon={
             <RefreshIcon
               className={isFetching ? "animate-spin" : ""}
@@ -154,7 +109,7 @@ function Orders() {
       </div>
       <SearchQueryInput
         value={query}
-        onChange={onChangeQuery}
+        onChange={setQuery}
       />
       {isFetching ? (
         <p className="text-black place-self-center">
