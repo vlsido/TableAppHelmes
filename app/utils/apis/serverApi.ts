@@ -51,5 +51,6 @@ function mockSearch(
   orders: Order[], orderNumber: string
 ) {
 
-  return orders.filter((order: Order) => order.orderNumber.toUpperCase().includes(orderNumber.toUpperCase()));
+  return orders.
+    filter((order: Order) => order.orderNumber.toUpperCase().includes(orderNumber.toUpperCase()));
 }
