@@ -27,17 +27,19 @@ function OrdersTable(props: OrdersTableProps) {
   }
 
   return (
-    <div
+    <table
       data-testid="ORDERS_TABLE.CONTAINER:VIEW"
-      className="border border-[#EDEDED] rounded-sm">
-      <div className="flex flex-row py-[12px] px-[24px] gap-[24px] text-black text-sm text-left font-semibold wrap-anywhere">
-        <p className="flex-1">Order #</p>
-        <p className="flex-1">Created at</p>
-        <p className="flex-1">Due date</p>
-        <p className="flex-1 text-right">Total</p>
-        <p className="flex-1 text-right">Status</p>
-      </div>
-      <div>
+      className="border-[#EDEDED] rounded-sm">
+      <thead>
+        <tr className="text-black text-sm text-left">
+          <th className="px-[24px]">Order #</th>
+          <th>Created at</th>
+          <th>Due date</th>
+          <th className="px-[24px] text-right">Total</th>
+          <th className="px-[24px] text-right">Status</th>
+        </tr>
+      </thead>
+      <tbody>
         {props.orders.map((
           order, index
         ) => {
@@ -96,19 +98,18 @@ function OrdersTable(props: OrdersTableProps) {
           }
 
           return (
-            <div key={order.orderNumber} className={rowClassName + " flex flex-row py-[12px] px-[24px] gap-[24px] text-left wrap-anywhere"}>
-              <p className="flex-1" >{order.orderNumber}</p>
-              <p className="flex-1">{formattedCreatedAt}</p>
-              <p className="flex-1">{formattedDueDate}</p>
-              <p className="flex-1 text-right ">{formattedTotal}</p>
-              <p className={statusClassName + " flex-1 text-right font-bold"} >{order.status}</p>
-            </div>
+            <tr key={order.orderNumber} className={rowClassName + " text-left"}>
+              <td className="px-[24px]" >{order.orderNumber}</td>
+              <td>{formattedCreatedAt}</td>
+              <td>{formattedDueDate}</td>
+              <td className="text-right px-[24px]">{formattedTotal}</td>
+              <td className={statusClassName + " text-right px-[24px] font-semibold"} >{order.status}</td>
+            </tr>
           )
         })}
-      </div>
-    </div>
+      </tbody>
+    </table>
   );
-
 }
 
 export default OrdersTable;
