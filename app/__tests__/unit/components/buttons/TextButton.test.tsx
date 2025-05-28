@@ -38,23 +38,23 @@ describe(
     );
 
     test(
-      "Button renders with custom background and text color",
+      "Button renders with custom background color and text",
       () => {
+        const text = "Colored Button";
+
         render(<TextButton
           testId="TEXT_BUTTON.CONTAINER:BUTTON"
-          text="Colored Button"
+          text={text}
           onPress={mockFn}
           ariaLabel="Colored button"
-          backgroundColor="red"
-          color="green"
+          containerClassName="bg-[red]"
         />);
 
         const button = screen.getByTestId("TEXT_BUTTON.CONTAINER:BUTTON");
 
-        expect(button).toHaveStyle({
-          backgroundColor: "red",
-          color: "green"
-        });
+        expect(button).toHaveClass("bg-[red]");
+
+        expect(button).toHaveTextContent(text);
       }
     );
   }
