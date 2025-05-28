@@ -166,7 +166,7 @@ function OrdersTable(props: OrdersTableProps) {
               <div
                 role="gridcell"
                 aria-colindex={5}
-                className={statusClassName + " text-right font-semibold"}
+                className={statusClassName + " text-right font-bold"}
               >
                 {order.status}
               </div>
