@@ -88,7 +88,7 @@ function Orders() {
   return (
     <div
       data-testid="ORDERS.CONTAINER:VIEW"
-      className="flex w-[100%] max-w-[734px] place-self-center grid pt-[5%] px-[10px] gap-[12px]">
+      className="flex w-[100%] max-w-[734px] place-self-center grid mx-auto pt-[5%] px-[10px] gap-[12px]">
       <div
         data-testid="ORDERS.CONTAINER.HEADER:VIEW"
         className="flex flex-row justify-between">
@@ -112,7 +112,9 @@ function Orders() {
         onChange={setQuery}
       />
       {isFetching ? (
-        <p className="text-black place-self-center">
+        <p
+          data-testid="ORDERS.CONTAINER.LOADING:TEXT"
+          className="text-black place-self-center">
           Loading...
         </p>
       ) : (
