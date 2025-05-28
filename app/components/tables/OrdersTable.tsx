@@ -1,14 +1,5 @@
 import type { Order } from "~/types/api";
-
-const MOCK_CURRENT_DATE = new Date(
-  2024,
-  11,
-  16,
-  0,
-  0,
-  0,
-  0
-).getTime();
+import ResponsiveRow from "./rows/ResponsiveRow";
 
 interface OrdersTableProps {
   orders: Order[];
@@ -77,102 +68,12 @@ function OrdersTable(props: OrdersTableProps) {
       >
         {props.orders.map((
           order, index
-        ) => {
-          const rowClassName = index % 2 === 0
-            ? "bg-[#f5f5f5]"
-            : "";
-
-          const createdAt = new Date(order.createdAt);
-
-          const dueDate = new Date(order.dueDate);
-
-          const formattedCreatedAt = createdAt.
-            toLocaleString(
-              "en-US",
-              {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: false
-              }
-            );
-
-          const formattedDueDate = dueDate.
-            toLocaleString(
-              "en-US",
-              {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-              }
-            );
-
-          const formattedTotal = new Intl.NumberFormat(
-            "en-US",
-            {
-              style: "currency",
-              currency: "EUR"
-            }
-          ).format(order.total);
-
-          let statusClassName = "";
-
-          if (order.status === "PAID") {
-            statusClassName = "text-[#2CD540]";
-          } else if (order.status === "UNPAID" && dueDate.setHours(
-            0,
-            0,
-            0,
-            0
-          ) >= MOCK_CURRENT_DATE) {
-            statusClassName = "text-[#E4C93D]";
-          } else {
-            statusClassName = "text-[#F22424]";
-          }
-
-          return (
-            <div
-              key={order.orderNumber}
-              className={rowClassName + " grid grid-flow-row grid-cols-5 py-[12px] px-[24px] gap-[24px] text-black text-left wrap-anywhere"}
-              role="row"
-            >
-              <div
-                role="gridcell"
-                aria-colindex={1}
-              >
-                {order.orderNumber}
-              </div>
-              <div
-                role="gridcell"
-                aria-colindex={2}
-              >
-                {formattedCreatedAt}
-              </div>
-              <div
-                role="gridcell"
-                aria-colindex={3}
-              >
-                {formattedDueDate}
-              </div>
-              <div
-                role="gridcell"
-                aria-colindex={4}
-                className="text-right"
-              >
-                {formattedTotal}
-              </div>
-              <div
-                role="gridcell"
-                aria-colindex={5}
-                className={statusClassName + " text-right font-bold"}
-              >
-                {order.status}
-              </div>
-            </div>
-          )
-        })}
+        ) =>
+          <ResponsiveRow
+            key={order.orderNumber}
+            order={order}
+            index={index}
+          />)}
       </div>
     </div>
   );
