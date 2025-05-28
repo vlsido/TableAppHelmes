@@ -10,7 +10,7 @@ These are the conventions for tests.
 
 ## Test Stack
 
-• Jest
+• Jest 
 • React Testing Library
 
 ## General
@@ -27,9 +27,9 @@ All "data-testid" names are upper case. Words are separated by underline "_".
 {FILE_NAME}.{PARENT_COMPONENT}.{COMPONENT_SPECIFICATION}:{TYPE}
 ```
 
-e.g. ORDERS.CONTAINER:VIEW
-e.g. ORDERS.CONTAINER.HEADER:VIEW
-e.g. ORDERS.CONTAINER.HEADER.REFRESH:BUTTON
+e.g. ORDERS.CONTAINER:VIEW 
+e.g. ORDERS.CONTAINER.HEADER:VIEW 
+e.g. ORDERS.CONTAINER.HEADER.REFRESH:BUTTON 
 e.g. ORDERS_TABLE.CONTAINER.ORDER_LIST:LIST
 
 ### Lists
