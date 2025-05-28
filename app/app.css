@@ -5,6 +5,13 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+@layer base {
+  input::placeholder,
+  textarea::placeholder {
+    color: #ABABAB;
+  }
+}
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;

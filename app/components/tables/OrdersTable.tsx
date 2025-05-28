@@ -1,21 +1,20 @@
 import type { Order } from "~/types/api";
 
+const MOCK_CURRENT_DATE = new Date(
+  2024,
+  11,
+  16,
+  0,
+  0,
+  0,
+  0
+).getTime();
+
 interface OrdersTableProps {
   orders: Order[];
 }
 
 function OrdersTable(props: OrdersTableProps) {
-  const mockDateClear = new Date(new Date().setFullYear(
-    2024,
-    11,
-    16
-  )).setHours(
-    0,
-    0,
-    0,
-    0
-  );
-
   if (props.orders.length === 0) {
     return (
       <p
@@ -80,8 +79,8 @@ function OrdersTable(props: OrdersTableProps) {
           order, index
         ) => {
           const rowClassName = index % 2 === 0
-            ? "text-black bg-[#f5f5f5]"
-            : "text-black";
+            ? "bg-[#f5f5f5]"
+            : "";
 
           const createdAt = new Date(order.createdAt);
 
@@ -127,7 +126,7 @@ function OrdersTable(props: OrdersTableProps) {
             0,
             0,
             0
-          ) >= mockDateClear) {
+          ) >= MOCK_CURRENT_DATE) {
             statusClassName = "text-[#E4C93D]";
           } else {
             statusClassName = "text-[#F22424]";
@@ -136,7 +135,7 @@ function OrdersTable(props: OrdersTableProps) {
           return (
             <div
               key={order.orderNumber}
-              className={rowClassName + " grid grid-flow-row grid-cols-5 py-[12px] px-[24px] gap-[24px] text-left wrap-anywhere"}
+              className={rowClassName + " grid grid-flow-row grid-cols-5 py-[12px] px-[24px] gap-[24px] text-black text-left wrap-anywhere"}
               role="row"
             >
               <div
@@ -167,7 +166,7 @@ function OrdersTable(props: OrdersTableProps) {
               <div
                 role="gridcell"
                 aria-colindex={5}
-                className={statusClassName + " text-right font-semibold"}
+                className={statusClassName + " text-right font-bold"}
               >
                 {order.status}
               </div>

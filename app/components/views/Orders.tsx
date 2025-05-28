@@ -99,6 +99,8 @@ function Orders() {
           text="Refresh"
           testId="ORDERS.CONTAINER.HEADER.REFRESH:BUTTON"
           ariaLabel="Refresh orders data"
+          containerClassName="flex flex-row items-center px-[16px] py-[10px] gap-[8px] bg-[#005EFF] rounded-sm cursor-pointer"
+          textClassName="text-[14px] text-white font-semibold"
           onPress={handleRefresh}
           leftSideIcon={
             <RefreshIcon
