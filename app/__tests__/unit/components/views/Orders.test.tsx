@@ -27,5 +27,14 @@ describe(
         await screen.findByTestId("ORDERS_TABLE.CONTAINER:VIEW");
       }
     );
+
+    test(
+      "Shows loading state initially",
+      () => {
+        render(<Orders />);
+        expect(screen.getByTestId("ORDERS.CONTAINER.LOADING:TEXT")).toBeInTheDocument();
+      }
+    );
+
   }
 );

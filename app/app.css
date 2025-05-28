@@ -13,3 +13,12 @@ body {
     color-scheme: dark;
   }
 }
+
+th {
+  font-weight: 600;
+  padding-block: 12px;
+}
+
+td {
+  padding-block: 12px;
+}
