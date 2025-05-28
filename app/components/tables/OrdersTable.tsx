@@ -27,36 +27,55 @@ function OrdersTable(props: OrdersTableProps) {
   }
 
   return (
-    <table
+    <div
       data-testid="ORDERS_TABLE.CONTAINER:VIEW"
-      className="border-[#EDEDED] rounded-sm"
+      className="border border-[#EDEDED] rounded-sm"
+      role="grid"
       aria-colcount={5}
     >
-      <thead>
-        <tr className="text-black text-sm text-left">
-          <th
+      <div
+        role="rowgroup"
+      >
+        <div
+          role="row"
+          className="grid grid-flow-row grid-cols-5 py-[12px] px-[24px] gap-[24px] text-black text-sm text-left font-semibold wrap-anywhere"
+        >
+          <div
+            role="columnheader"
             aria-colindex={1}
-            className="px-[24px]"
           >
             Order #
-          </th>
-          <th aria-colindex={2}>Created at</th>
-          <th aria-colindex={3}>Due date</th>
-          <th
+          </div>
+          <div
+            role="columnheader"
+            aria-colindex={2}
+          >
+            Created at
+          </div>
+          <div
+            role="columnheader"
+            aria-colindex={3}>
+            Due date
+          </div>
+          <div
+            role="columnheader"
             aria-colindex={4}
-            className="px-[24px] text-right"
+            className="text-right"
           >
             Total
-          </th>
-          <th
+          </div>
+          <div
+            role="columnheader"
             aria-colindex={5}
-            className="px-[24px] text-right"
+            className="text-right"
           >
             Status
-          </th>
-        </tr>
-      </thead>
-      <tbody>
+          </div>
+        </div>
+      </div>
+      <div
+        role="rowgroup"
+      >
         {props.orders.map((
           order, index
         ) => {
@@ -115,18 +134,50 @@ function OrdersTable(props: OrdersTableProps) {
           }
 
           return (
-            <tr key={order.orderNumber} className={rowClassName + " text-left"}>
-              <td className="px-[24px]" >{order.orderNumber}</td>
-              <td>{formattedCreatedAt}</td>
-              <td>{formattedDueDate}</td>
-              <td className="text-right px-[24px]">{formattedTotal}</td>
-              <td className={statusClassName + " text-right px-[24px] font-semibold"} >{order.status}</td>
-            </tr>
+            <div
+              key={order.orderNumber}
+              className={rowClassName + " grid grid-flow-row grid-cols-5 py-[12px] px-[24px] gap-[24px] text-left wrap-anywhere"}
+              role="row"
+            >
+              <div
+                role="gridcell"
+                aria-colindex={1}
+              >
+                {order.orderNumber}
+              </div>
+              <div
+                role="gridcell"
+                aria-colindex={2}
+              >
+                {formattedCreatedAt}
+              </div>
+              <div
+                role="gridcell"
+                aria-colindex={3}
+              >
+                {formattedDueDate}
+              </div>
+              <div
+                role="gridcell"
+                aria-colindex={4}
+                className="text-right"
+              >
+                {formattedTotal}
+              </div>
+              <div
+                role="gridcell"
+                aria-colindex={5}
+                className={statusClassName + " text-right font-semibold"}
+              >
+                {order.status}
+              </div>
+            </div>
           )
         })}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
+
 }
 
 export default OrdersTable;
