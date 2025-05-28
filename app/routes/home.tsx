@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <main
       data-testid="HOME.MAIN_CONTAINER:VIEW"
+      aria-label="Home page"
       className="h-screen w-screen flex-1 bg-white overflow-auto">
       <Orders />
     </main>
