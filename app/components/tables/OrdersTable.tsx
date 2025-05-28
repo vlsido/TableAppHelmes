@@ -25,6 +25,7 @@ function OrdersTable(props: OrdersTableProps) {
       </p>
     );
   }
+
   return (
     <div
       data-testid="ORDERS_TABLE.CONTAINER:VIEW"
