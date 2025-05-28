@@ -29,14 +29,31 @@ function OrdersTable(props: OrdersTableProps) {
   return (
     <table
       data-testid="ORDERS_TABLE.CONTAINER:VIEW"
-      className="border-[#EDEDED] rounded-sm">
+      className="border-[#EDEDED] rounded-sm"
+      aria-colcount={5}
+    >
       <thead>
         <tr className="text-black text-sm text-left">
-          <th className="px-[24px]">Order #</th>
-          <th>Created at</th>
-          <th>Due date</th>
-          <th className="px-[24px] text-right">Total</th>
-          <th className="px-[24px] text-right">Status</th>
+          <th
+            aria-colindex={1}
+            className="px-[24px]"
+          >
+            Order #
+          </th>
+          <th aria-colindex={2}>Created at</th>
+          <th aria-colindex={3}>Due date</th>
+          <th
+            aria-colindex={4}
+            className="px-[24px] text-right"
+          >
+            Total
+          </th>
+          <th
+            aria-colindex={5}
+            className="px-[24px] text-right"
+          >
+            Status
+          </th>
         </tr>
       </thead>
       <tbody>
