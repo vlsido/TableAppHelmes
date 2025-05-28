@@ -96,9 +96,9 @@ function Orders() {
           Orders
         </h1>
         <TextButton
-          text="Refresh"
           testId="ORDERS.CONTAINER.HEADER.REFRESH:BUTTON"
           ariaLabel="Refresh orders data"
+          text="Refresh"
           containerClassName="flex flex-row items-center self-center px-[16px] py-[10px] gap-[8px] bg-[#005EFF] rounded-[4px] cursor-pointer"
           textClassName="text-[14px] text-white font-semibold"
           onPress={handleRefresh}
