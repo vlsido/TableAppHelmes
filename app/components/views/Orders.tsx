@@ -88,7 +88,7 @@ function Orders() {
   return (
     <div
       data-testid="ORDERS.CONTAINER:VIEW"
-      className="flex w-[100%] max-w-[1200px] grid mx-auto py-[5%] px-[10px] md:px-[10%] gap-[12px]">
+      className="flex w-[100%] max-w-[754px] grid mx-auto py-[5%] px-[10px] gap-[12px]">
       <div
         data-testid="ORDERS.CONTAINER.HEADER:VIEW"
         className="flex flex-row justify-between">
