@@ -28,7 +28,7 @@ function OrdersTable(props: OrdersTableProps) {
   return (
     <div
       data-testid="ORDERS_TABLE.CONTAINER:VIEW"
-      className="border border-[#EDEDED] rounded-sm"
+      className="border border-[#EDEDED] rounded-[4px]"
       role="grid"
       aria-colcount={5}
     >
@@ -37,7 +37,7 @@ function OrdersTable(props: OrdersTableProps) {
       >
         <div
           role="row"
-          className="grid grid-flow-row grid-cols-5 py-[12px] px-[24px] gap-[24px] text-black text-sm text-left font-semibold wrap-anywhere"
+          className="grid grid-flow-row grid-cols-5 py-[12px] px-[24px] gap-[24px] text-black text-[14px] text-left font-semibold wrap-anywhere"
         >
           <div
             role="columnheader"

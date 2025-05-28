@@ -92,14 +92,14 @@ function Orders() {
       <div
         data-testid="ORDERS.CONTAINER.HEADER:VIEW"
         className="flex flex-row justify-between">
-        <h1 className="text-4xl font-semibold text-black">
+        <h1 className="text-[36px] font-semibold text-black">
           Orders
         </h1>
         <TextButton
           text="Refresh"
           testId="ORDERS.CONTAINER.HEADER.REFRESH:BUTTON"
           ariaLabel="Refresh orders data"
-          containerClassName="flex flex-row items-center px-[16px] py-[10px] gap-[8px] bg-[#005EFF] rounded-sm cursor-pointer"
+          containerClassName="flex flex-row items-center self-center px-[16px] py-[10px] gap-[8px] bg-[#005EFF] rounded-[4px] cursor-pointer"
           textClassName="text-[14px] text-white font-semibold"
           onPress={handleRefresh}
           leftSideIcon={

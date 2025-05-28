@@ -18,7 +18,7 @@ function TextButton(props: TextButtonProps) {
       data-testid={props.testId}
       className={props.containerClassName
         ? props.containerClassName
-        : "flex flex-row items-center px-[16px] py-[10px] gap-[8px] bg-black rounded-sm cursor-pointer"
+        : "flex flex-row items-center px-[16px] py-[10px] gap-[8px] bg-black rounded-[4px] cursor-pointer"
       }
       aria-label={props.ariaLabel}
       disabled={props.disabled}

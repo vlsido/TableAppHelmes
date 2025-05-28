@@ -10,7 +10,7 @@ function SearchQueryInput(props: SearchQueryInputProps) {
       data-testid="SEARCH_QUERY_INPUT.CONTAINER:INPUT"
       aria-label="Order number"
       role="search"
-      className="flex w-[100%] flex-row px-[24px] py-[10px] gap-[10px] border border-[#EDEDED] rounded-sm text-black text-[14px]"
+      className="flex w-[100%] flex-row px-[24px] py-[10px] gap-[10px] border border-[#EDEDED] rounded-[4px] text-black text-[14px]"
       name="searchField"
       placeholder="Search by order number"
       value={props.value}
