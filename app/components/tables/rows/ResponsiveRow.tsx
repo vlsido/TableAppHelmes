@@ -1,4 +1,3 @@
-import { MOCK_CURRENT_DATE } from "~/consts/date";
 import type { Order } from "~/types/api";
 
 interface ResponsiveRowProps {
@@ -55,7 +54,7 @@ function ResponsiveRow(props: ResponsiveRowProps) {
     0,
     0,
     0
-  ) >= MOCK_CURRENT_DATE) {
+  ) >= Date.now()) {
     statusClassName = "text-[#E4C93D]";
   } else {
     statusClassName = "text-[#F22424]";
