@@ -3,6 +3,7 @@ import type { Order } from "~/types/api";
 interface ResponsiveRowProps {
   order: Order;
   index: number;
+  currentDateAtMidnightInMs: number;
 }
 
 function ResponsiveRow(props: ResponsiveRowProps) {
@@ -10,11 +11,7 @@ function ResponsiveRow(props: ResponsiveRowProps) {
     ? "bg-[#f5f5f5]"
     : "";
 
-  const createdAt = new Date(props.order.createdAt);
-
-  const dueDate = new Date(props.order.dueDate);
-
-  const formattedCreatedAt = createdAt.
+  const formattedCreatedAt = new Date(props.order.createdAt).
     toLocaleString(
       "en-US",
       {
@@ -26,6 +23,8 @@ function ResponsiveRow(props: ResponsiveRowProps) {
         hour12: false
       }
     );
+
+  const dueDate = new Date(props.order.dueDate);
 
   const formattedDueDate = dueDate.
     toLocaleString(
@@ -54,7 +53,7 @@ function ResponsiveRow(props: ResponsiveRowProps) {
     0,
     0,
     0
-  ) >= Date.now()) {
+  ) >= props.currentDateAtMidnightInMs) {
     statusClassName = "text-[#E4C93D]";
   } else {
     statusClassName = "text-[#F22424]";

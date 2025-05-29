@@ -16,6 +16,13 @@ function OrdersTable(props: OrdersTableProps) {
     );
   }
 
+  const currentDateAtMidnightInMs: number = new Date().setHours(
+    0,
+    0,
+    0,
+    0
+  );
+
   return (
     <div
       data-testid="ORDERS_TABLE.CONTAINER:VIEW"
@@ -73,6 +80,7 @@ function OrdersTable(props: OrdersTableProps) {
             key={order.orderNumber}
             order={order}
             index={index}
+            currentDateAtMidnightInMs={currentDateAtMidnightInMs}
           />)}
       </div>
     </div>
